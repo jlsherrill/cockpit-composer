@@ -74,9 +74,7 @@ const CreateImageWizard = (props) => {
   const dispatch = useDispatch();
 
   const blueprintNames = useSelector((state) => selectAllBlueprintNames(state));
-  const getImageTypes = () =>
-    useSelector((state) => selectAllImageTypes(state));
-  const imageTypes = getImageTypes();
+  const imageTypes = useSelector((state) => selectAllImageTypes(state));
 
   const [isWizardOpen, setIsWizardOpen] = useState(false);
 
@@ -212,6 +210,7 @@ const CreateImageWizard = (props) => {
       </Button>
       {isWizardOpen && (
         <FormRenderer
+          key={`image-wizard-${isWizardOpen}-${props.blueprint?.name || "new"}`}
           initialValues={
             props.blueprint ? blueprintToFormState(props.blueprint) : {}
           }
